@@ -1,40 +1,34 @@
 import React from "react";
 
 const CartItem = ({ product, updateQuantity, removeProduct }) => {
+  const totalCost = product.price * product.quantity;
+
   return (
-    <li className="flex justify-between items-center bg-zinc-600 p-4 rounded-lg shadow-lg">
-      <div className="flex flex-col">
-        <span className="text-xl font-semibold">{product.name}</span>
-        <span>Price: ₹{product.price.toFixed(2)}</span>
-      </div>
-      <div className="flex items-center space-x-4">
-        <button
-          className="px-3 py-1 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition"
-          onClick={() => removeProduct(product.id)}
-        >
-          Remove
-        </button>
-        <div className="flex items-center space-x-2">
-          <button
-            className="px-2 py-1 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-800 transition"
-            onClick={() => updateQuantity(product.id, product.quantity - 1)}
-          >
-            -
-          </button>
+    <li className="flex justify-between items-center bg-zinc-700 p-4 rounded-lg shadow-md">
+      <div>
+        <h2 className="text-xl font-semibold">{product.name}</h2>
+        <p className="text-gray-300">Price: ₹{product.price}</p>
+        <div className="flex items-center mt-2">
+          <label className="mr-2">Qty:</label>
           <input
             type="number"
             value={product.quantity}
             min="1"
-            className="w-12 text-center text-black rounded-lg"
+            className="w-16 p-1 text-black rounded-lg"
             onChange={(e) => updateQuantity(product.id, e.target.value)}
           />
-          <button
-            className="px-2 py-1 bg-gray-700 text-white rounded-lg font-semibold hover:bg-gray-800 transition"
-            onClick={() => updateQuantity(product.id, product.quantity + 1)}
-          >
-            +
-          </button>
         </div>
+      </div>
+      <div className="text-right">
+        <p className="text-lg font-bold">
+          {product.quantity} x ₹{product.price} = ₹{totalCost.toFixed(2)}
+        </p>
+        <button
+          className="mt-2 bg-red-500 text-white px-4 py-1 rounded-lg"
+          onClick={() => removeProduct(product.id)}
+        >
+          Remove
+        </button>
       </div>
     </li>
   );

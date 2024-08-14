@@ -42,8 +42,8 @@ const CartPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-gradient-to-b from-zinc-400 via-gray-400 to-zinc-800 rounded-xl shadow-xl space-y-6 sm:py-8 w-full h-full text-white">
-      <h1 className="text-4xl font-extrabold text-center mb-8">
+    <div className="p-6 max-w-4xl mx-auto bg-gradient-to-b text-emerald-900 from-emerald-300 to-emerald-200 rounded-xl shadow-xl space-y-6 sm:py-8 w-full h-full">
+      <h1 className="text-4xl text-emerald-950 font-extrabold text-center mb-8">
         Your Shopping Cart
       </h1>
       <ul className="space-y-4">
@@ -67,7 +67,7 @@ const CartPage = () => {
           onChange={applyDiscount}
         />
       </div>
-      <div className="text-2xl font-extrabold text-right mt-6">
+      <div className="text-2xl text-emerald-950 font-extrabold text-right mt-6">
         Total: ₹{total.toFixed(2)}
       </div>
     </div>

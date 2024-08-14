@@ -3,24 +3,41 @@ import React from "react";
 const CartItem = ({ product, updateQuantity, removeProduct }) => {
   const totalCost = product.price * product.quantity;
 
+  const handleDecrease = () => {
+    if (product.quantity > 1) {
+      updateQuantity(product.id, product.quantity - 1);
+    }
+  };
+
+  const handleIncrease = () => {
+    updateQuantity(product.id, product.quantity + 1);
+  };
+
   return (
-    <li className="flex justify-between items-center bg-zinc-700 p-4 rounded-lg shadow-md">
+    <li className="flex justify-between items-center bg-emerald-100 p-4 rounded-lg shadow-md">
       <div>
-        <h2 className="text-xl font-semibold">{product.name}</h2>
-        <p className="text-gray-300">Price: ₹{product.price}</p>
+        <h2 className="text-xl text-zinc-900 font-semibold">{product.name}</h2>
+        <p className="text-zinc-900">Price: ₹{product.price}</p>
         <div className="flex items-center mt-2">
-          <label className="mr-2">Qty:</label>
-          <input
-            type="number"
-            value={product.quantity}
-            min="1"
-            className="w-16 p-1 text-black rounded-lg"
-            onChange={(e) => updateQuantity(product.id, e.target.value)}
-          />
+          <label className="mr-2 text-zinc-900">Qty:</label>
+          <button
+            className="bg-emerald-700 text-white  px-4 py-1 rounded-md"
+            onClick={handleDecrease}
+            disabled={product.quantity === 1}
+          >
+            -
+          </button>
+          <span className="mx-3 text-zinc-900">{product.quantity}</span>
+          <button
+            className="bg-emerald-700 text-white  px-4 py-1 rounded-md"
+            onClick={handleIncrease}
+          >
+            +
+          </button>
         </div>
       </div>
       <div className="text-right">
-        <p className="text-lg font-bold">
+        <p className="text-lg text-zinc-900 font-bold">
           {product.quantity} x ₹{product.price} = ₹{totalCost.toFixed(2)}
         </p>
         <button
